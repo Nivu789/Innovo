@@ -1,0 +1,12 @@
+.footer{
+    font-family: "Poppins",sans-serif;
+    background-color: rgb(158, 243, 238);
+    padding-top: 80px;
+    height: 45vh;
+    padding-bottom: 20px;
+}
+
+.footer > :nth-child(1){
+    padding-left: 130px;
+    /* padding-right: 200px; */
+}

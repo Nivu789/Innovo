@@ -1,0 +1,47 @@
+.navbar-div{
+    background-color: rgba(158, 243, 238, .8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px 0px 10px;
+    border-radius: 52px;
+}
+
+.navbar-div-default{
+    background-color: rgba(158, 243, 238, .8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px 0px 10px;
+    border-radius: 0px;
+}
+
+.navbar-ul{
+    display: flex;
+    list-style-type: none;
+    gap: 18px;
+    margin-bottom: 0;
+    align-items: center;
+    font-size: 11pt;
+    font-weight: 500;
+    font-family: "Poppins",sans-serif;
+}
+
+
+
+.bi-search{
+    background-color: black;
+    color:white;
+    padding:  1.2rem;
+}
+
+.search-icon-block{
+    width: 40px;
+    height: 40px;
+}
+
+.margin-test{
+    margin-left: 310px;
+    margin-top: -48px;
+    padding-left: 40px;
+}

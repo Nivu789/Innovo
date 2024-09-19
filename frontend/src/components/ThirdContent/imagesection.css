@@ -1,0 +1,57 @@
+.image-container{
+    height: 70vh;
+    position: relative;
+}
+
+.image-card{
+    padding-top: 50px;
+    padding-left: 50px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.image-card > :nth-child(2){
+    margin-top: 20px;
+    width: 200px;
+}
+
+
+
+.image-card::before {
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    background-color: black;
+    opacity:.3;
+    z-index: 0;
+    transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+.image-card:hover::before{
+    background: linear-gradient(to bottom, #9ef3ee, black); 
+    opacity: 0.2;
+}
+
+.icon{
+    height: 50px;
+    width: 50px;
+    filter: invert(1);
+}
+
+@media only screen and (max-width:768px){
+    .image{
+        height: 400px;
+    }
+    .image-card{
+        height: 100%;
+    }
+    .image-container{
+        height: 270vh;
+        position: relative;
+    }
+}

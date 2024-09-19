@@ -1,0 +1,230 @@
+.contact-section{
+    font-family: "Poppins",sans-serif;
+    padding: 0px 120px 0px 120px;
+}
+
+.office-section{
+    font-family: "Poppins",sans-serif;
+    padding: 10px 80px 0px 80px;
+    margin-top: 70px;
+}
+
+
+.heading-contact{
+    padding-bottom: 18px;
+    padding-left: 80px;
+    padding-right: 80px;
+    font-family: "Poppins",sans-serif;
+}
+
+.card{
+    height: 450px;
+    width: 420px;
+    padding-top: 150px;
+    color: white;
+    border-radius: 52px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.card::before{
+    content: '';
+    top: 0;
+    left: 0;
+    background-color: black;
+    position:absolute;
+    z-index: -1;
+    right: 0; /* Ensure the gradient covers the entire width */
+    bottom: 0; /* Ensure the gradient covers the entire height */
+    background: linear-gradient(to bottom,rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.8));
+    opacity: 1;
+}
+
+.heading-office{
+    padding-bottom: 25px;
+}
+.heading-office h1{
+    font-size: 52px;
+    line-height: 50px;
+    margin-top: 50px;
+    font-weight: 400; 
+}
+
+.heading-contact h1{
+    font-size: 50px;
+    line-height: 50px;
+    margin-top: 50px;
+    font-weight: 400;
+}
+
+.contact-section>:nth-child(2){
+     height: 400px;
+     background-color: #f2f2f2;
+     border-radius: 52px;
+     margin-top: 80px;
+}
+
+.content-section-1{
+    padding-left: 50px;
+    border-top-left-radius: 52px;
+    border-bottom-left-radius: 52px;
+}
+
+.content-section-2 img{
+    border-radius: 52px;
+}
+
+.office-section{
+    background-color: rgb(158, 243, 238);
+    margin-bottom: 60px;
+    padding-bottom: 60px;
+}
+
+
+.card-content h4{
+    font-size: 30px;
+}
+
+.card-content p{
+    font-size: 17px;
+    height: 150px;
+}
+
+.card-content .location-div{
+    font-size: 16px;
+    
+}
+
+.location-image{
+    filter: invert(1);
+}
+
+.email-form input{
+    border-style: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+.email-form .label-blur{
+    font-size: 15px;
+    transition: font-size 0.2s ease;
+}
+
+.email-form .label-focused{
+    font-size: 12px; 
+    transition: font-size 0.2s ease; 
+    color: #333;
+}
+
+.email-form textarea{
+    outline: none;
+    border-style: none;
+    border-bottom: 1px solid black;
+}
+
+.email-section{
+    font-family: "Poppins",sans-serif;
+    padding: 0px 80px 70px 80px;
+}
+
+.email-section h5{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.office-card-row{
+    gap: 12px 0px;
+    background-color: red;
+}
+
+.contact-div{
+    padding-left: 80px;
+    padding-right: 80px;
+    font-family: "Poppins",sans-serif;
+    padding-top: 60px;
+}
+
+.hero-contact{
+    background-color: #f0f0f0;
+    border-radius: 52px;
+}
+
+.hero-contact .content-part-1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 100px;
+}
+
+
+.hero-contact img{
+    border-radius: 52px;
+}
+
+
+@media only screen and (max-width:992px){
+    .contact-section{
+        font-family: "Poppins",sans-serif;
+        padding: 0px 40px 0px 40px;
+    }
+    .content-section-1{
+        padding-left: 0px;
+    }
+    .office-section{
+        font-family: "Poppins",sans-serif;
+        padding: 10px 30px 0px 30px;
+        margin-top: 70px;
+    }
+    .card{
+        height: 480px;
+        width: 100%;
+        padding-top: 150px;
+        color: white;
+        border-radius: 52px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+   
+}
+
+
+@media only screen and (min-width:992px) and (max-width:1474px){
+    .card{
+        height: 480px;
+        width: 410px;
+        padding-top: 150px;
+        color: white;
+        border-radius: 52px;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    
+}
+
+@media only screen and (max-width:992px){
+    .contact-div{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .hero-contact img{
+        border-radius: 24px;
+    }
+    .hero-contact .content-part-1{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 50px;
+        padding-bottom: 50px;
+        padding-top: 50px;
+    }
+    .heading-contact{
+        padding-bottom: 18px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-family: "Poppins",sans-serif;
+    }
+}
+

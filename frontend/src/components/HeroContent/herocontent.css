@@ -1,0 +1,91 @@
+.hero-content{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    margin-top: 100px;
+    font-family: "Poppins",sans-serif;
+}
+
+@media only screen and (max-width:768px){
+    .hero-content{
+        display: grid;
+        margin-top: 100px;
+        grid-template-columns: 1fr;
+        font-family: "Poppins",sans-serif;
+    }
+    .hero-content .grid-1 > h1{
+        font-size: 35px;
+        line-height: 50px;
+        font-weight: 400; 
+    }
+    .hero-content .grid-1 > h1 > span{
+       margin-right: 10px;
+    }
+    .hero-content .grid-1 > h3{
+        font-size: 16px;
+        padding-right: 20px;
+    }
+    .logo-image{
+        display: none;
+    }
+    .grid-1 > h1 {
+        padding-bottom: 0px;
+    }
+    .hero-content .grid-1{
+        margin-top: 80px;
+    }
+}
+
+.hero-content .grid-1 > h1{
+    font-weight: 900;
+}
+
+.hero-content .grid-1 > h1 > span{
+    color: #9ef3ee;
+}
+
+.hero-content-2{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    margin-top: 100px;
+}
+
+@media only screen and (max-width:768px){
+    .hero-content-2 {
+        margin-top: 20px;
+    }
+}
+
+.section-2-logo{
+    width: 100px;
+    height: 100px;
+}
+
+.grid-1{
+    padding-left: 65px;
+    padding-right: 65px;
+}
+
+@media only screen and (max-width:768px){
+    .grid-1{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+.grid-1 > h1 {
+    font-size: 65px;
+    font-family: "Poppins", sans-serif;
+    border-bottom: 1px solid white;
+    padding-bottom: 10px;
+    width: 90%;
+}
+
+.grid-1 > h3{
+    font-size: 14pt;
+    line-height: 36px;
+}
+
+.chevron-block{
+    width: 80px;
+    height: 80px;
+}
