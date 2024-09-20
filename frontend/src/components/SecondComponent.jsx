@@ -10,7 +10,7 @@ const SecondComponent = () => {
             <div className='d-flex flex-column second-section-1'>
                 <div className='heading-text'>Redefining the global built environment</div>
                 
-                <div className='col d-flex justify-content-center align-items-center h-100 d-sm-none'>
+                <div className='col d-flex justify-content-center align-items-center h-100 d-lg-none'>
                     <div className='shadow video-div lg-rounded-pill border d-flex align-items-center justify-content-center'>
                         <img src="./play-button-image.webp" alt="" style={{objectPosition:"center",objectFit:"cover"}}/>
                         <i class="bi bi-play-circle"></i>

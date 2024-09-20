@@ -46,12 +46,14 @@
 @media only screen and (max-width:768px){
     .image{
         height: 400px;
+        position: relative;
     }
     .image-card{
         height: 100%;
+        position: relative;
     }
     .image-container{
-        height: 270vh;
+        height: 298vh;
         position: relative;
     }
 }

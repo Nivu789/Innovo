@@ -12,7 +12,7 @@ const Home = () => {
     <SecondComponent/>
     <ThirdComponent/>
     <ForthComponent/>
-    <Footer/>
+    {/* <Footer/> */}
     </>
   )
 }

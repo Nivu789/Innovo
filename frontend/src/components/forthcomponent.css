@@ -161,3 +161,65 @@
         right: 20%;
     }
 }
+
+@media only screen and (max-width:768px){
+    .forth-section{
+        padding-top: 50px;
+        height: 200vh;
+        font-family: "Poppins",sans-serif;
+    
+    }
+
+    .approach-section >:nth-child(1){
+        padding-top: 20px;
+        padding-left: 30px;
+    }
+    .approach-section >:nth-child(2){
+        margin-top: 30px;
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+
+    .heading-approach{
+        font-size: 25pt;
+        font-family: "Poppins",sans-serif;
+        font-weight: 400;
+    }
+    .pill-section{
+        height: 50vh;
+        padding: 50px 20px 0px 20px;
+    }
+    .pill{
+        height: 300px;
+        width: 100%;
+        border-radius: 24px;
+        position: relative;
+        overflow: hidden;
+    }
+    .heading-2-approach{
+        font-size: 18pt;
+        font-weight: 400;
+    } 
+    .featured-section{
+        padding-left: 20px;
+        height: 65vh;
+        padding-right: 20px;
+        margin-top: 450px;
+    }
+    .heading-featured{
+        font-size: 24pt;
+        font-family: "Poppins",sans-serif;
+        font-weight: 400;
+        width: 25%;
+    }
+    .featured-section >:nth-child(1){
+        gap: 20px;
+        padding-top: 50px;
+    }
+    .pills-section > :nth-child(1){
+        padding-left: 0px;
+    }
+    .pills-section > :nth-child(2){
+        padding-left: 0px;
+    }
+}
