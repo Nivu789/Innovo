@@ -1,0 +1,13 @@
+.item{
+   text-decoration: none; 
+   color: black;
+}
+
+.menu-item{
+    color: black;
+    transition: color 0.5s ease-in;
+}
+
+.menu-item:hover{
+   color: white;
+}

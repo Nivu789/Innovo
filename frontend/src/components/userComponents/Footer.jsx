@@ -3,7 +3,7 @@ import './footer.css'
 
 const Footer = () => {
   return (
-    <div className='row footer'>
+    <div className='row footer position-relative'>
         <div className='col-9'>
             <div className='row'>
                 <div className='col'>
