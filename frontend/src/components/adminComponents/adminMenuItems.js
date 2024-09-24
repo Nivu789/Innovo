@@ -1,25 +1,23 @@
 export const adminMenuItems = [
     {
-        heading:"General",
+        heading:"UI",
+        icon:"bi bi-menu-app",
         children:[
             {
-                heading:"Item 1",
-                children:[
-                    {
-                        heading:"Item 1.1"
-                    }
-                ]
+                heading:"Home Page",
+                icon:"bi bi-house-fill",
+                url:"/admin/dashboard/edit-ui/home"
             },
             {
-                heading:"Item 2",
-            },
-            {
-                heading:"Item 3",
-            },
+                heading:"Contact Page",
+                icon:"bi bi-person-lines-fill",
+                url:"/admin/dashboard/edit-ui/contact"
+            }
         ]
     },
     {
         heading:"Contacts",
-        url:"/admin/dashboard/contacts"
+        url:"/admin/dashboard/contacts",
+        icon:"bi bi-person-lines-fill"
     }
 ]

@@ -10,7 +10,7 @@ const SidebarItems = ({data}) => {
             <div className='mt-2'>
                 <div className='d-flex gap-0 justify-content-around flex-column shadow-sm fs-5 p-3 border'>
                     <div className='d-flex gap-1 menu-item'>
-                        <i class="bi bi-person-lines-fill"></i>
+                        <i class={`${data.icon}`}></i>
                         <div>{data.heading}</div>
                             <i class={`bi ${isOpen ? "bi-chevron-up":"bi-chevron-down"}`} onClick={()=>setIsOpen(!isOpen)}></i>
                         </div>
@@ -28,7 +28,7 @@ const SidebarItems = ({data}) => {
 
         return (
             <div className='d-flex gap-4 justify-content-around flex-column shadow-sm fs-5 p-3 border mt-2'>
-                <Link to={data.url} className='item d-flex gap-1'><i class="bi bi-person-lines-fill"></i><div className='menu-item'>{data.heading}</div></Link>
+                <Link to={data.url} className='item d-flex gap-1'><i class={`${data.icon}`}></i><div className='menu-item'>{data.heading}</div></Link>
             </div>
         )
         

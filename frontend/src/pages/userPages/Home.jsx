@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
     <HeroComponent/>
-    <SecondComponent/>
+    <SecondComponent sectionId={2}/>
     <ThirdComponent/>
     <ForthComponent/>
     {/* <Footer/> */}

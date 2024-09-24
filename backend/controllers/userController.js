@@ -1,5 +1,6 @@
 const sendEmailResend = require('../helpers/sendEmailResend')
 const EMAIL = require('../models/emailModel')
+const UI = require('../models/uiModel')
 
 const sendEmail = async(req,res) =>{
     try {
@@ -25,6 +26,22 @@ const sendEmail = async(req,res) =>{
     }
 }
 
+const fetchUiContent = async(req,res) =>{
+    try {
+        const {sectionId} = req.body
+        console.log(sectionId)
+        const uiData = await UI.find({sectionId})
+        
+        if(uiData){
+            return res.json({success:true,uiData})
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
-    sendEmail
+    sendEmail,
+    fetchUiContent
 }
