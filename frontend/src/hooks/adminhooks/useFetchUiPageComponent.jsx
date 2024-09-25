@@ -17,6 +17,8 @@ export const useFetchUiPageComponents = ({pageName,refetch}) =>{
 
         setLoading(false)
 
+        console.log(data)
+
     },[pageName,refetch])
 
     return {data,loading}

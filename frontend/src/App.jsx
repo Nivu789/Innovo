@@ -7,6 +7,7 @@ import AdminContacts from './pages/adminPages/AdminContacts'
 import AdminDashboard from './pages/adminPages/AdminDashboard'
 import AdminLogin from './pages/adminPages/AdminLogin'
 import EditUI from './pages/adminPages/EditUI'
+import EditUiSection from './pages/adminPages/EditUiSection'
 import Contact from './pages/userPages/Contact'
 import Home from './pages/userPages/Home'
 import {Routes,Route} from 'react-router-dom'
@@ -29,6 +30,7 @@ function App() {
         <Route path='/admin/dashboard' element={<Protector><AdminDashboard/></Protector>}>
             <Route path='contacts' element={<AdminContacts/>}></Route>
             <Route path='edit-ui/:pageName' element={<EditUI/>}></Route>
+            <Route path='edit-ui/:pageName/:sectionId' element={<EditUiSection/>}></Route>
         </Route>
       
 

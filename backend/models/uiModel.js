@@ -9,6 +9,9 @@ const uiItemSchema = mongoose.Schema({
     },
     image:{
         type:String
+    },
+    uniqueId:{
+        type:Number
     }
 })
 

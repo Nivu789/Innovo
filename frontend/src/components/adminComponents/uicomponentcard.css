@@ -1,6 +1,7 @@
 .content-card:hover{
     background-color: black;
     color: white;
+    cursor: pointer;
 }
 
 .content-card{

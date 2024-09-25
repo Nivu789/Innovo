@@ -2,6 +2,7 @@ const EMAIL = require("../models/emailModel")
 const UI = require("../models/uiModel")
 const USER = require("../models/userModel")
 const jwt = require('jsonwebtoken')
+const mongoose = require('mongoose')
 
 const adminLogin = async(req,res) =>{
     try {
@@ -70,13 +71,25 @@ const uploadUiImage = (req, res,next) =>{
 
 const editUiComponent = async(req,res) =>{
     try {
-       const {heading,description,sectionId} = req.body
-       let updateUi;
+       const {heading,description,parentId,uniqueId} = req.body
+       console.log(heading)
+       console.log("ObjectId",parentId)
+       console.log("UniqueId",uniqueId)
+       const parsedParentId = new mongoose.Types.ObjectId(parentId)
+       const parentDocument = await UI.findById({_id:parsedParentId});
+
+       const itemToUpdate = parentDocument.items.find((item)=>item.uniqueId==uniqueId)
+
        if(req.file){
-            updateUi = await UI.findOneAndUpdate({sectionId},{$set:{heading,description,image:req.file.path}})
+            itemToUpdate.heading = heading
+            itemToUpdate.description = description
+            itemToUpdate.image = req.file.path
        }else{
-            updateUi = await UI.findOneAndUpdate({sectionId},{$set:{heading,description}})
+            itemToUpdate.heading = heading
+            itemToUpdate.description = description
        }
+
+       const updateUi = await parentDocument.save()
        
        if(updateUi){
         return res.json({success:true,message:"Updated UI successfully"})
@@ -89,10 +102,31 @@ const editUiComponent = async(req,res) =>{
     }
 }
 
+const getUiSections = async(req,res) =>{
+    try {
+        const {pageName,sectionId} = req.body
+        const data = await UI.find({$and:
+            [
+                {pageName},
+                {sectionId}
+            ]})
+        
+            if(data){
+                return res.json({success:true,data})
+            }
+
+            return res.json({success:false})
+            
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
     adminLogin,
     getContacts,
     getUiComponents,
     uploadUiImage,
-    editUiComponent
+    editUiComponent,
+    getUiSections
 }

@@ -15,5 +15,7 @@ adminRoute.post('/get-ui-components',adminFunctions.getUiComponents)
 
 adminRoute.post('/edit-ui', UiUpload.upload.single('image'),adminFunctions.uploadUiImage,adminFunctions.editUiComponent);
 
+adminRoute.post('/get-ui-section-components',adminFunctions.getUiSections)
+
 
 module.exports = adminRoute
