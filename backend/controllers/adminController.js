@@ -1,8 +1,9 @@
 const EMAIL = require("../models/emailModel")
-const UI = require("../models/uiModel")
+const UI = require("../models/uiModel.js")
 const USER = require("../models/userModel")
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
+const { v4: uuidv4 } = require('uuid');
 
 const adminLogin = async(req,res) =>{
     try {
@@ -122,11 +123,84 @@ const getUiSections = async(req,res) =>{
     }
 }
 
+const addUiComponent = async(req,res) =>{
+    try {
+       const {heading,description,image,parentId} = req.body
+       const parentDoc = await UI.findById({_id:parentId})
+       if(parentDoc){
+        const limit = parentDoc.limit
+        const checkAvailability = parentDoc.items.length < limit
+        
+        if(checkAvailability){
+            if(req.file){
+                await parentDoc.items.push({heading,description,image:req.file.path,uniqueId:uuidv4()})
+            }else{
+                await parentDoc.items.push({heading,description,image:"",uniqueId:uuidv4()})
+            }
+            await parentDoc.save()
+            return res.json({success:true,message:"Added component successfully"})
+        }else{
+            return res.json({success:false,message:"The section does not support more elements"})
+        }
+        
+       }
+
+       return res.json({success:false,message:"Something went wrong while adding"})
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const deleteUiComponent = async(req,res) =>{
+    try {
+       const {parentId,docId} = req.body
+       const parentDocument = await UI.findById({_id:parentId})
+       if(parentDocument){
+        const itemToDelete = await parentDocument.items.findIndex((item)=>item.uniqueId==docId)
+              
+        if(itemToDelete !== -1){
+                await parentDocument.items.splice(itemToDelete,1)
+                await parentDocument.save()
+                return res.json({success:true,message:"Removed item successfully"})
+            }
+
+        return res.json({success:false,message:"Something went wrong"})
+            
+       }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const rearrangeUiComponent = async(req,res) =>{
+    try {
+        const {parentDocId,sectionData} = req.body
+        const parentDocument = await UI.findById({_id:parentDocId})
+        if(parentDocument){
+            parentDocument.items.length = 0
+            parentDocument.items = sectionData
+
+            await parentDocument.save()
+            return res.json({success:true,message:"Reordered successfully"})
+        }
+
+        return res.json({success:false,message:"Something went wrong"})
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
     adminLogin,
     getContacts,
     getUiComponents,
     uploadUiImage,
     editUiComponent,
-    getUiSections
+    getUiSections,
+    addUiComponent,
+    deleteUiComponent,
+    rearrangeUiComponent
 }

@@ -17,5 +17,10 @@ adminRoute.post('/edit-ui', UiUpload.upload.single('image'),adminFunctions.uploa
 
 adminRoute.post('/get-ui-section-components',adminFunctions.getUiSections)
 
+adminRoute.post('/add-ui-component',UiUpload.upload.single('image'),adminFunctions.uploadUiImage,adminFunctions.addUiComponent)
+
+adminRoute.post('/delete-ui-component',adminFunctions.deleteUiComponent)
+
+adminRoute.post('/rearrange-section-elements',adminFunctions.rearrangeUiComponent)
 
 module.exports = adminRoute

@@ -1,6 +1,6 @@
 const sendEmailResend = require('../helpers/sendEmailResend')
 const EMAIL = require('../models/emailModel')
-const UI = require('../models/uiModel')
+const UI = require('../models/uiModel.js')
 
 const sendEmail = async(req,res) =>{
     try {

@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom'
 import { useFetchUiPageComponents } from '../../hooks/adminhooks/useFetchUiPageComponent'
 import UiComponentCard from '../../components/adminComponents/UiComponentCard'
 import EditUiSection from './EditUiSection'
+import { useParentDocId } from '../../contexts/documentIdContext'
+import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast'
+import {DragDropContext} from 'react-beautiful-dnd'
 
 const EditUI = () => {
     const [refetch, setRefetch] = useState(false)
@@ -24,6 +28,8 @@ const EditUI = () => {
             descriptionError: ""
         }
     ])
+
+    const [reorderMode,setReorderMode] = useState(false)
 
     useEffect(() => {
         // console.log(heading.length)
@@ -49,6 +55,67 @@ const EditUI = () => {
         }
     }, [description])
 
+    let { parentDocId } = useParentDocId()
+
+
+    const handleAddElement = () =>{
+        const formData = new FormData()
+        formData.append('heading', heading)
+        formData.append('description', description)
+        formData.append('image', image)
+        
+        if(!parentDocId){
+            parentDocId = localStorage.getItem("id")
+        }
+
+        formData.append('parentId', parentDocId)
+        axios.post(`${import.meta.env.VITE_BASE_URL}/admin/add-ui-component`, formData) 
+        .then((res)=>{
+            if(res.data.success){
+                toast.success(res.data.message)
+                setRefetch((prev)=>!prev)
+                setHeading("")
+                setDescription("")
+                setImage("")
+                const modalId = `#exampleModal`;
+                    const modalElement = document.querySelector(modalId);
+                    const modal = bootstrap.Modal.getInstance(modalElement);
+                    if (modal) {
+                        modal.hide();
+                    }
+            }else{
+                toast.error(res.data.message)
+            }
+        })   
+    }
+
+    const [newList,setNewList] = useState(sectionData)
+
+    const handleOnDragEnd = (result) =>{
+        const items = Array.from(sectionData)
+        const [reorderedItem] = items.splice(result.source.index,1)
+        items.splice(result.destination.index,0,reorderedItem)
+        console.log(items)
+        setSectionData(items)
+    }
+
+    const handleItemShuffleInDb = () =>{
+        if(!parentDocId){
+            parentDocId = localStorage.getItem("id")
+        }
+
+        axios.post(`${import.meta.env.VITE_BASE_URL}/admin/rearrange-section-elements`,{parentDocId,sectionData})
+        .then((res)=>{
+            if(res.data.success){
+                toast.success(res.data.message)
+                setRefetch((prev)=>!prev)
+            }else{
+                toast.error(res.data.message)
+            }
+        })
+    }
+
+
     return (
         <>
             <div className='ps-3 w-100 pe-3' style={{ height: "100vh" }}>
@@ -68,14 +135,31 @@ const EditUI = () => {
                                 ))
                         }
                     </div>
+                    
+                    <DragDropContext onDragEnd={handleOnDragEnd}>
+                    <div className='col pe-4 ps-4 d-flex flex-column pt-2 gap-3' style={{ height: "100%",overflowx:"auto" }}>
+                        <div className='d-flex justify-content-between'>
+                            <div className='fs-2'>EditSection </div>
+                            <div className='d-flex gap-2'>
+                            <button className='rounded btn btn-info d-flex align-items-center gap-2' data-bs-toggle="modal" data-bs-target={`#exampleModal`}><i class="bi bi-plus-circle"></i>Add Item</button>
+                            <button className={`rounded btn ${reorderMode ? "btn-success":"btn-warning"} d-flex align-items-center gap-2`} onClick={()=>setReorderMode(!reorderMode)}>
+                                {reorderMode ? <i class="bi bi-check-circle" onClick={handleItemShuffleInDb}>Confirm</i>
+                                :
+                                <i class="bi bi-shuffle">Reorder</i>
+                                  
+                            }
 
-                    <div className='col pe-4 ps-4 d-flex flex-column pt-2 gap-3' style={{ height: "100%" }}>
-                        <div className='d-flex justify-content-between'><div className='fs-2'>EditSection </div><button className='rounded btn btn-info' data-bs-toggle="modal" data-bs-target={`#exampleModal`}>Add Item</button></div>
-                        <EditUiSection sectionData={sectionData} refetch={refetch} setRefetch={setRefetch} />
+                            </button>
+                            </div>
+                        </div>
+                        <EditUiSection sectionData={sectionData} refetch={refetch} setRefetch={setRefetch} reorderMode={reorderMode}/>
                     </div>
+                    </DragDropContext>
                 </div>
             </div>
 
+
+            <Toaster/>
 
             <div class="modal fade" id={`exampleModal`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -106,7 +190,7 @@ const EditUI = () => {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="button" class="btn btn-primary" onClick={handleAddElement}>Save changes</button>
                         </div>
                     </div>
                 </div>

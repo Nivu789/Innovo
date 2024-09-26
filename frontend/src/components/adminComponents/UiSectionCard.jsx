@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react'
 import { toast, Toaster } from 'react-hot-toast'
 import axios from 'axios'
 import { useParentDocId } from '../../contexts/documentIdContext'
+import Swal from 'sweetalert2'
+import { Draggable } from 'react-beautiful-dnd'
 
 
-const UiSectionCard = ({ data, setRefetch }) => {
+const UiSectionCard = ({ data, setRefetch, index, reorderMode }) => {
 
     const [heading, setHeading] = useState("")
     const [description, setDescription] = useState("")
@@ -24,7 +26,7 @@ const UiSectionCard = ({ data, setRefetch }) => {
     ])
 
 
-    const { parentDocId } = useParentDocId()
+    let { parentDocId } = useParentDocId()
 
     const formData = new FormData()
     formData.append('heading', heading)
@@ -35,6 +37,10 @@ const UiSectionCard = ({ data, setRefetch }) => {
         if (heading == "" || description == "" || headingError || descriptionError) {
             toast.error("Invalid Data found - Changes were not saved")
             return
+        }
+
+        if (!parentDocId) {
+            parentDocId = localStorage.getItem("id")
         }
 
         formData.append('parentId', parentDocId)
@@ -72,9 +78,6 @@ const UiSectionCard = ({ data, setRefetch }) => {
             setErrors({ ...erros, headingError: null })
         }
 
-
-
-        // console.log(erros)
     }, [heading])
 
     useEffect(() => {
@@ -92,22 +95,93 @@ const UiSectionCard = ({ data, setRefetch }) => {
         setDescription(dataDescription);
     }
 
+    const handleDeleteSection = (uniqueId) => {
+        console.log(parentDocId)
+        if (!parentDocId) {
+            parentDocId = localStorage.getItem("id")
+        }
+
+        Swal.fire({
+            title: "Do you want to remove the element?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Yes",
+            denyButtonText: `No`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post(`${import.meta.env.VITE_BASE_URL}/admin/delete-ui-component`, { parentId: parentDocId, docId: uniqueId })
+                    .then((res) => {
+                        if (res.data.success) {
+                            toast.success(res.data.message)
+                            setRefetch((prev) => !prev)
+                        } else {
+                            toast.error(res.data.message)
+                        }
+                    })
+            } else if (result.isDenied) {
+                toast.error("Changes were not saved")
+            }
+        });
+
+    }
+
 
     return (
         <>
             <Toaster />
-            <div className='row pe-2 shadow-sm rounded content-card' data-bs-toggle="modal" data-bs-target={`#exampleModal${data._id}`} onClick={() => handleEditModal(data.heading, data.description)}>
 
-                <div className='col-9 d-flex flex-column justify-content-center ps-5'>
-                    <div><strong>Heading :</strong> {data.heading}</div>
-                    <div><strong>Description :</strong> {data.description}</div>
+            {reorderMode ?
+
+                <Draggable key={data.uniqueId} index={index} draggableId={data.uniqueId}>
+                    {
+                        (provided) => (
+                            <div className='row pe-2 shadow-sm rounded content-card' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+
+                                <div className='col-1 d-flex flex-column align-items-center justify-content-center gap-2'>
+                                    <button className='rounded-circle bg-dark text-white' data-bs-toggle="modal" data-bs-target={`#exampleModal${data._id}`} onClick={() => handleEditModal(data.heading, data.description)}><i class="bi bi-pen"></i></button>
+                                    <button className='rounded-circle bg-danger text-white' onClick={() => handleDeleteSection(data.uniqueId)}><i class="bi bi-trash"></i></button>
+                                </div>
+
+                                <div className='col-8 d-flex flex-column justify-content-center ps-5'>
+                                    <div><strong>Heading :</strong> {data.heading}</div>
+                                    <div><strong>Description :</strong> {data.description}</div>
+                                </div>
+
+                                <div className='col-3 pt-2 pb-2' style={{ height: "100px" }}>
+                                    <img src={`http://localhost:3000/${data.image}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                                </div>
+
+                            </div>
+
+                        )
+                    }
+
+
+
+                </Draggable>
+
+                :
+
+                <div className='row pe-2 shadow-sm rounded content-card'>
+
+                    <div className='col-1 d-flex flex-column align-items-center justify-content-center gap-2'>
+                        <button className='rounded-circle bg-dark text-white' data-bs-toggle="modal" data-bs-target={`#exampleModal${data._id}`} onClick={() => handleEditModal(data.heading, data.description)}><i class="bi bi-pen"></i></button>
+                        <button className='rounded-circle bg-danger text-white' onClick={() => handleDeleteSection(data.uniqueId)}><i class="bi bi-trash"></i></button>
+                    </div>
+
+                    <div className='col-8 d-flex flex-column justify-content-center ps-5'>
+                        <div><strong>Heading :</strong> {data.heading}</div>
+                        <div><strong>Description :</strong> {data.description}</div>
+                    </div>
+
+                    <div className='col-3 pt-2 pb-2' style={{ height: "100px" }}>
+                        <img src={`http://localhost:3000/${data.image}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                    </div>
+
                 </div>
 
-                <div className='col-3 pt-2 pb-2' style={{ height: "100px" }}>
-                    <img src={`http://localhost:3000/${data.image}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
-                </div>
+            }
 
-            </div>
 
 
             <div class="modal fade" id={`exampleModal${data._id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -73,6 +73,7 @@ const UiComponentCard = ({ data ,pageName,setSectionData,refetch }) => {
         setSectionData(sectionData)
         console.log(data._id)
         setParentDocId(data._id)
+        localStorage.setItem("id",data._id)
         // axios.post(`${import.meta.env.VITE_BASE_URL}/admin/get-ui-section-components`,{pageName,sectionId})
         // .then((res)=>{
         //     if(res.data.success){

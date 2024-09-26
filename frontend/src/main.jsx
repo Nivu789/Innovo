@@ -8,7 +8,7 @@ import DocumentIdContextProvider from './contexts/documentIdContext.jsx'
 
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  
     <BrowserRouter>
     <DropdownContextProvider>
     <DocumentIdContextProvider>
@@ -16,5 +16,5 @@ createRoot(document.getElementById('root')).render(
     </DocumentIdContextProvider>
     </DropdownContextProvider>
     </BrowserRouter>
-  </StrictMode>,
+
 )

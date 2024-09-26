@@ -11,7 +11,7 @@ const uiItemSchema = mongoose.Schema({
         type:String
     },
     uniqueId:{
-        type:Number
+        type:String,
     }
 })
 
@@ -23,7 +23,11 @@ const uiSchema = mongoose.Schema({
     sectionId:{
         type:Number
     },
-    items:[uiItemSchema]
+    items:[uiItemSchema],
+    limit:{
+        type:Number,
+        default:1
+    }
 })
 
 
