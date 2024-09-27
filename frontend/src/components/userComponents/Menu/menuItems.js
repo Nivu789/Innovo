@@ -99,7 +99,7 @@ export const menuItems = [
     },
     {
         item:"News",
-        url:"#",
+        url:"/news",
     },
     {
         item:"Careers",

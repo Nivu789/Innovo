@@ -19,5 +19,10 @@ export const adminMenuItems = [
         heading:"Contacts",
         url:"/admin/dashboard/contacts",
         icon:"bi bi-person-lines-fill"
+    },
+    {
+        heading:"News",
+        url:"/admin/dashboard/news",
+        icon:"bi bi-person-lines-fill"
     }
 ]

@@ -23,4 +23,12 @@ adminRoute.post('/delete-ui-component',adminFunctions.deleteUiComponent)
 
 adminRoute.post('/rearrange-section-elements',adminFunctions.rearrangeUiComponent)
 
+adminRoute.post('/add-news',UiUpload.upload.single('image'),adminFunctions.uploadUiImage,adminFunctions.addNews)
+
+adminRoute.get('/get-news-data',adminFunctions.getNewsData)
+
+adminRoute.post('/get-indi-news-data',adminFunctions.getIndiNewsData)
+
+adminRoute.post('/edit-news',UiUpload.upload.single('image'),adminFunctions.editNews)
+
 module.exports = adminRoute

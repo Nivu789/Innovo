@@ -1,4 +1,5 @@
 const EMAIL = require("../models/emailModel")
+const NEWS = require("../models/newsModel.js")
 const UI = require("../models/uiModel.js")
 const USER = require("../models/userModel")
 const jwt = require('jsonwebtoken')
@@ -193,6 +194,75 @@ const rearrangeUiComponent = async(req,res) =>{
     }
 }
 
+const addNews = async(req,res) =>{
+    try {
+        const {heading,category,content,date} = req.body    
+        const newsData = await NEWS.create({
+            category,
+            date,
+            heading,
+            content
+        })
+
+        if(req.file){
+            newsData.image = req.file.path
+        }else{
+            newsData.image=""
+        }
+
+        await newsData.save()
+
+
+        if(newsData){
+            return res.json({success:true,message:"News added successfully"})
+        }else{
+            return res.json({success:false,message:"Something went wrong"})
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+const getNewsData = async(req,res) =>{
+    try {
+        const newsData = await NEWS.find({})
+        if(newsData){
+            return res.json({success:true,newsData})
+        }else{
+            return res.json({success:false})
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getIndiNewsData = async(req,res) =>{
+    try {
+        const {newsId} = req.body
+        const newsData = await NEWS.findById({_id:newsId})
+        if(!newsData){
+            return res.json({success:"Something went wrong"})
+        }
+
+        return res.json({success:true,newsData})
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const editNews = (req,res) =>{
+    try {
+        console.log(req.body)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
 module.exports = {
     adminLogin,
     getContacts,
@@ -202,5 +272,9 @@ module.exports = {
     getUiSections,
     addUiComponent,
     deleteUiComponent,
-    rearrangeUiComponent
+    rearrangeUiComponent,
+    addNews,
+    getNewsData,
+    getIndiNewsData,
+    editNews
 }

@@ -1,0 +1,27 @@
+.news-section{
+    font-family: "Poppins",sans-serif;
+    padding: 0px 110px 0px 110px;
+}
+
+.news-header>:nth-child(1){
+    font-size: 50px;
+}
+
+.card-image{
+    height: 280px;
+}
+.card-image > img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 52px;
+}
+
+.card-heading{
+    font-weight: 400;
+    font-size: 16pt;
+}
+
+.news-card{
+    font-family: "Poppins",sans-serif;
+}

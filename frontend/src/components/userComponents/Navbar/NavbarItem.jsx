@@ -71,7 +71,7 @@ const NavbarItem = ({item,depthLevel}) => {
             <>
             <div style={{position:"relative"}}>
             <div className='d-flex gap-1 no-children-link'>
-                <Link style={{ textDecoration: 'none',color:'black' }} to={'/contact'}><div>{item.item}</div></Link>
+                <Link style={{ textDecoration: 'none',color:'black' }} to={item.url}><div>{item.item}</div></Link>
             </div>
             </div>
             </>
