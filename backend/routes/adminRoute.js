@@ -31,4 +31,10 @@ adminRoute.post('/get-indi-news-data',adminFunctions.getIndiNewsData)
 
 adminRoute.post('/edit-news',UiUpload.upload.single('image'),adminFunctions.editNews)
 
+adminRoute.post('/delete-news',adminFunctions.deleteNews)
+
+adminRoute.post('/add-category',adminFunctions.addCategory)
+
+adminRoute.get('/get-category',adminFunctions.getCategories)
+
 module.exports = adminRoute

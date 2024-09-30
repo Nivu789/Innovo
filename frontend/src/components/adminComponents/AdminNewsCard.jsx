@@ -3,7 +3,7 @@ import moment from 'moment'
 import './adminnewscard.css'
 import { Link } from 'react-router-dom'
 
-const AdminNewsCard = ({data}) => {
+const AdminNewsCard = ({data,handleDeleteNews}) => {
     const [divActive,setDivActive] = useState(false)
 
   return (
@@ -17,9 +17,9 @@ const AdminNewsCard = ({data}) => {
                     
                     { divActive ?
                     
-                    <div onMouseLeave={()=>setDivActive(false)} style={{width:"100%",height:"100%",borderRadius:"52px"}} className='bg-danger d-flex justify-content-center align-items-center gap-4'>
+                    <div onMouseLeave={()=>setDivActive(false)} style={{width:"100%",height:"100%",borderRadius:"52px",border:"1px solid black"}} className='bg-transparent d-flex justify-content-center align-items-center gap-4'>
                         <Link to={`/admin/dashboard/editnews/${data._id}`}><button className='btn rounded-circle border fs-2'><i class="bi bi-gear"></i></button></Link>    
-                        <button className='btn rounded-circle border fs-2'><i class="bi bi-trash"></i></button>    
+                        <button className='btn rounded-circle border fs-2' onClick={()=>handleDeleteNews(data._id)}><i class="bi bi-trash"></i></button>    
                     </div>
                     
 

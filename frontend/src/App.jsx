@@ -15,6 +15,7 @@ import AdminNews from './pages/adminPages/AdminNews'
 import QuillEditor from './components/adminComponents/QuillEditor'
 import AddNews from './pages/adminPages/AddNews'
 import EditNews from './pages/adminPages/EditNews'
+import IndiNews from './pages/userPages/IndiNews'
 
 
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/' element={<Home/>}></Route>
         <Route path='/contact' element={<Contact/>}></Route>
         <Route path='/news' element={<News/>}></Route>
+        <Route path='/news/:newsId' element={<IndiNews/>}></Route>
       </Route>
       
       <Route path='' element={<AdminLayout/>}>

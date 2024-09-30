@@ -5,12 +5,16 @@ import { useFetchIndiNewsData } from '../../hooks/adminhooks/useFetchIndiNewsDat
 import { useParams } from 'react-router-dom'
 import moment from 'moment'
 import axios from 'axios'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const EditNews = () => {
 
     const {newsId} = useParams()
 
     const {newsData} = useFetchIndiNewsData(newsId)
+
+    const navigate = useNavigate()
 
     const [content,setContent] = useState("")
     const [heading,setHeading] = useState("")
@@ -35,16 +39,24 @@ const EditNews = () => {
     formData.append('category',category)
     formData.append('image',image)
     formData.append('content',content)
+    formData.append('newsId',newsId)
     
-    const handleNewsEdit = () =>{
+    const handleNewsEdit = (e) =>{
+        e.preventDefault()
         formData.append('date',date)
         axios.post(`${import.meta.env.VITE_BASE_URL}/admin/edit-news`,formData)
+        .then((res)=>{
+            if(res.data.success){
+                toast.success(res.data.message)
+                navigate('/admin/dashboard/news')
+            }else{
+                toast.error(res.data.message)
+            }
+        })
     }
 
-
-        console.log(date)
   return (
-    <div className='ps-3 pe-3 w-100'>
+    <div className='ps-3 pe-3 w-100' style={{height:"55vh"}}>
         <div className='fs-2'>Edit News</div>
 
         <NewsForm 
@@ -57,7 +69,7 @@ const EditNews = () => {
         setHeading={setHeading}
         setDate={setDate}
         setImage={setImage}
-        setCategory={category}
+        setCategory={setCategory}
         handleNewsEdit={handleNewsEdit}
         editMode={true}
         />

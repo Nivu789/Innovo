@@ -1,5 +1,6 @@
 const sendEmailResend = require('../helpers/sendEmailResend')
 const EMAIL = require('../models/emailModel')
+const NEWS = require('../models/newsModel.js')
 const UI = require('../models/uiModel.js')
 
 const sendEmail = async(req,res) =>{
@@ -41,7 +42,38 @@ const fetchUiContent = async(req,res) =>{
     }
 }
 
+const getIndiNews = async(req,res) =>{
+    try {
+        const {newsId} = req.body
+        const news = await NEWS.findById({_id:newsId})
+        if(!news){
+            return res.json({success:false,message:"Something went wrong"})
+        }
+
+        return res.json({success:true,news})
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getRecentNews = async(req,res) =>{
+    try {
+        const news = await NEWS.find({}).sort({date:-1}).limit(3)
+        if(news){
+            return res.json({success:true,news})
+        }
+
+        return res.json({success:false})
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
     sendEmail,
-    fetchUiContent
+    fetchUiContent,
+    getIndiNews,
+    getRecentNews
 }

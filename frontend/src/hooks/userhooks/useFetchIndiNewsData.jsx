@@ -1,24 +1,21 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-export const useFetchNewsData = (refetch) =>{
+const useFetchIndiNewsData = (newsId) =>{
     const [newsData,setNewsData] = useState([])
     const [loading,setLoading] = useState(true)
 
     useEffect(()=>{
-        console.log("ge")
-        axios.get(`${import.meta.env.VITE_BASE_URL}/admin/get-news-data`)
+        axios.post(`${import.meta.env.VITE_BASE_URL}/user/get-indi-news`)
         .then((res)=>{
             if(res.data.success){
-                console.log(res.data)
-                setNewsData(res.data.newsData)
+                setNewsData(res.data.news)
             }
         })
 
         setLoading(false)
-
-    },[refetch])
+        
+    },[])
 
     return {newsData,loading}
-
 }

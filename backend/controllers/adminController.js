@@ -1,3 +1,4 @@
+const CATEGORY = require("../models/categoryModel.js")
 const EMAIL = require("../models/emailModel")
 const NEWS = require("../models/newsModel.js")
 const UI = require("../models/uiModel.js")
@@ -254,9 +255,69 @@ const getIndiNewsData = async(req,res) =>{
     }
 }
 
-const editNews = (req,res) =>{
+const editNews = async(req,res) =>{
     try {
-        console.log(req.body)
+        const {heading,category,content,newsId,date} = req.body
+        let updateNews;
+        if(req.file){
+            updateNews = await NEWS.findByIdAndUpdate({_id:newsId},{$set:{heading,category,content,date,image:req.file.path}})
+        }else{
+            updateNews = await NEWS.findByIdAndUpdate({_id:newsId},{$set:{heading,category,content,date}})
+        }
+
+        if(updateNews){
+            return res.json({success:true,message:"Updated news content successfully"})
+        }
+
+        return res.json({success:false,message:"Something went wrong"})
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const deleteNews = async(req,res) =>{
+    try {
+       const {newsId} = req.body 
+       const removeNews = await NEWS.findByIdAndDelete({_id:newsId})
+       if(removeNews){
+        return res.json({success:true,message:"News removed successfully"})
+       }
+       
+       return res.json({success:false,message:"Something went wrong"})
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const addCategory = async(req,res) =>{
+    try {
+       const category = await CATEGORY.create({
+        categoryName:req.body.newCategory
+       }) 
+
+       if(category){
+        return res.json({success:true,message:"Category added successfully"})
+       }
+
+       return res.json({success:false,message:"Something went wrong"})
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getCategories = async(req,res) =>{
+    try {
+       const categoryData = await CATEGORY.find({})
+       
+       if(categoryData){
+        return res.json({success:true,categoryData})
+       }
+
+       return res.json({success:false})
+
     } catch (error) {
         console.log(error)
     }
@@ -276,5 +337,8 @@ module.exports = {
     addNews,
     getNewsData,
     getIndiNewsData,
-    editNews
+    editNews,
+    deleteNews,
+    addCategory,
+    getCategories
 }
