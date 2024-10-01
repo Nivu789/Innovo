@@ -1,8 +1,8 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 
-export const useFetchNewsData = (refetch) =>{
-    const [newsData,setNewsData] = useState([])
+export const useFetchNewsData = (refetch,setNewsData) =>{
+    
     const [loading,setLoading] = useState(true)
 
     useEffect(()=>{
@@ -19,6 +19,6 @@ export const useFetchNewsData = (refetch) =>{
 
     },[refetch])
 
-    return {newsData,loading}
+    return {loading}
 
 }

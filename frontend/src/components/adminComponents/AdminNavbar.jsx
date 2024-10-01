@@ -21,9 +21,9 @@ const AdminNavbar = () => {
                 <img src="/logo.svg" alt="logo" />
             </div>
             <div className='d-flex flex-column align-items-center'>
-                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" className="rounded-circle" style={{width:"50px"}}
+                <img src="/favicon.ico" className="rounded-circle" style={{width:"40px"}}
                 alt="Avatar" onClick={()=>setIsOpen(!isOpen)}/>
-                {isOpen && <div className='position-absolute' style={{width:"100px",top:"15px",right:"50px"}}>
+                {isOpen && <div className='position-absolute' style={{width:"100px",top:"10px",right:"50px"}}>
                     <button className='btn btn-success' onClick={handleLogout}>Log out</button>
                 </div>}
             </div>

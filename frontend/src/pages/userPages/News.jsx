@@ -5,7 +5,9 @@ import UserNewsCard from '../../components/userComponents/UserNewsCard'
 import { useFetchCategory } from '../../hooks/userhooks/useFetchCategory'
 
 const News = () => {
-    const {newsData,loading} = useFetchNewsData()
+    const [newsData,setNewsData] = useState([])
+    const refetch = false
+    const {loading} = useFetchNewsData(refetch,setNewsData)
     const [newsDataFetched,setNewsDataFetched] = useState([])
 
     const {categoryData} = useFetchCategory()
@@ -15,6 +17,8 @@ const News = () => {
     useEffect(()=>{
         setNewsDataFetched(newsData)
     },[newsData])
+
+    console.log(newsData)
 
     const handleFilter = () =>{
         const selectedCategory = categorySelect.current.value;

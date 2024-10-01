@@ -1,13 +1,53 @@
 .item{
    text-decoration: none; 
-   color: black;
+   color: white;
 }
 
 .menu-item{
-    color: black;
     transition: color 0.5s ease-in;
 }
 
-.menu-item:hover{
+.item-block{
+   background-color: black;
    color: white;
+   border-radius: 52px;
+   position: relative;
+   z-index: 1;
+   overflow: hidden;
+}
+
+
+.item-block:hover{
+   color: black;
+}
+
+.item-block:hover .item {
+   color: black;
+}
+
+.item-block::before{
+   content: '';
+   top: 0;
+   left: 0;
+   width: 0;
+   right: 0;
+   height: 100%;
+   position: absolute;
+   background-color: white;
+   z-index: -1;
+   transition: .5s;
+}
+
+
+.item-block:hover::before{
+   width: 100%;
+}
+
+.item-children{
+   background-color: black;
+   color: white;
+   border-radius: 52px;
+   position: relative;
+   z-index: 1;
+   overflow: hidden;
 }

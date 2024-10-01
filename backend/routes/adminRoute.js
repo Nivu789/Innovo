@@ -37,4 +37,6 @@ adminRoute.post('/add-category',adminFunctions.addCategory)
 
 adminRoute.get('/get-category',adminFunctions.getCategories)
 
+adminRoute.post('/reorder-news',adminFunctions.reOrderNews)
+
 module.exports = adminRoute

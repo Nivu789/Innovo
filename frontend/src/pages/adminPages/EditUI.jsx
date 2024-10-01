@@ -20,6 +20,8 @@ const EditUI = () => {
     const [headingError, setHeadingError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
 
+    const [limit,setLimit] = useState(0)
+
     const [erros, setErrors] = useState([
         {
             headingError: ""
@@ -116,6 +118,7 @@ const EditUI = () => {
     }
 
 
+
     return (
         <>
             <div className='ps-3 w-100 pe-3' style={{ height: "100vh" }}>
@@ -131,7 +134,7 @@ const EditUI = () => {
                                 :
 
                                 data.map((item, index) => (
-                                    <UiComponentCard data={item} pageName={pageName} key={index} setSectionData={setSectionData} refetch={refetch} />
+                                    <UiComponentCard data={item} setLimit={setLimit} pageName={pageName} key={index} setSectionData={setSectionData} refetch={refetch} />
                                 ))
                         }
                     </div>
@@ -141,7 +144,7 @@ const EditUI = () => {
                         <div className='d-flex justify-content-between'>
                             <div className='fs-2'>EditSection </div>
                             <div className='d-flex gap-2'>
-                            <button className='rounded btn btn-info d-flex align-items-center gap-2' data-bs-toggle="modal" data-bs-target={`#exampleModal`}><i class="bi bi-plus-circle"></i>Add Item</button>
+                            {sectionData.length < limit && <button className='rounded btn btn-info d-flex align-items-center gap-2' data-bs-toggle="modal" data-bs-target={`#exampleModal`}><i class="bi bi-plus-circle"></i>Add Item</button>}
                             <button className={`rounded btn ${reorderMode ? "btn-success":"btn-warning"} d-flex align-items-center gap-2`} onClick={()=>setReorderMode(!reorderMode)}>
                                 {reorderMode ? <i class="bi bi-check-circle" onClick={handleItemShuffleInDb}>Confirm</i>
                                 :

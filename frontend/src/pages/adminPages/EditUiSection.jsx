@@ -13,9 +13,9 @@ const EditUiSection = ({ sectionData, setRefetch ,reorderMode}) => {
           <Droppable droppableId='sectionlist'>
           {
             (provided) => (
-              <div className='d-flex flex-column gap-3' {...provided.droppableProps} ref={provided.innerRef}>
+              <div className='d-flex flex-column' {...provided.droppableProps} ref={provided.innerRef}>
                 {sectionData.map((item, index) => (
-                  <UiSectionCard data={item} index={index} key={index} setRefetch={setRefetch} reorderMode={reorderMode}/>
+                  <UiSectionCard data={item} index={index} key={index} setRefetch={setRefetch} reorderMode={reorderMode} disableDelete={sectionData.length==1}/>
                 ))}
                 {provided.placeholder}
               </div>
@@ -26,9 +26,9 @@ const EditUiSection = ({ sectionData, setRefetch ,reorderMode}) => {
       :
 
       
-            <div className='d-flex flex-column gap-3'>
+            <div className='d-flex flex-column gap-5 pt-3'>
               {sectionData.map((item, index) => (
-                <UiSectionCard data={item} index={index} key={index} setRefetch={setRefetch} />
+                <UiSectionCard data={item} index={index} key={index} setRefetch={setRefetch} disableDelete={sectionData.length==1}/>
               ))}
               
             </div>

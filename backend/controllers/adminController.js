@@ -33,7 +33,7 @@ const adminLogin = async(req,res) =>{
 
 const getContacts = async(req,res) =>{
     try {
-        const messages = await EMAIL.find({})
+        const messages = await EMAIL.find({}).select("-__v -_id",)
         if(messages){
             return res.json({success:true,messages})
         }else{
@@ -323,6 +323,24 @@ const getCategories = async(req,res) =>{
     }
 }
 
+const reOrderNews = async(req,res) =>{
+    try {
+        const newsData = req.body.newsData
+        const deleteData = await NEWS.deleteMany()
+        if(deleteData){
+            const insertData = await NEWS.insertMany(newsData)
+            if(insertData){
+                return res.json({success:true,message:"Reordered data"})
+            }
+        }
+
+        return res.json({success:false,message:"Something went wrong"})
+        
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 module.exports = {
     adminLogin,
@@ -340,5 +358,6 @@ module.exports = {
     editNews,
     deleteNews,
     addCategory,
-    getCategories
+    getCategories,
+    reOrderNews
 }

@@ -8,7 +8,7 @@ const SidebarItems = ({data}) => {
     if(data.children){
         return (
             <div className='mt-2'>
-                <div className='d-flex gap-0 justify-content-around flex-column shadow-sm fs-5 p-3 border'>
+                <div className='d-flex gap-0 justify-content-around flex-column shadow-sm fs-5 p-3 border item-children'>
                     <div className='d-flex gap-1 menu-item'>
                         <i class={`${data.icon}`}></i>
                         <div>{data.heading}</div>
@@ -27,8 +27,8 @@ const SidebarItems = ({data}) => {
     }else{
 
         return (
-            <div className='d-flex gap-4 justify-content-around flex-column shadow-sm fs-5 p-3 border mt-2'>
-                <Link to={data.url} className='item d-flex gap-1'><i class={`${data.icon}`}></i><div className='menu-item'>{data.heading}</div></Link>
+            <div className='d-flex gap-4 justify-content-around flex-column shadow-sm fs-5 p-3 border mt-2 item-block'>
+                <Link to={data.url} className='item d-flex gap-1'><i class={`${data.icon}`}></i>{data.heading}</Link>
             </div>
         )
         

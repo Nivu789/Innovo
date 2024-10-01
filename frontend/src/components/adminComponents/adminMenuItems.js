@@ -11,7 +11,7 @@ export const adminMenuItems = [
             {
                 heading:"Contact Page",
                 icon:"bi bi-person-lines-fill",
-                url:"/admin/dashboard/edit-ui/contact"
+                url:"#"
             }
         ]
     },
@@ -23,6 +23,6 @@ export const adminMenuItems = [
     {
         heading:"News",
         url:"/admin/dashboard/news",
-        icon:"bi bi-person-lines-fill"
+        icon:"bi bi-newspaper"
     }
 ]

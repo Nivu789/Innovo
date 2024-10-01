@@ -15,7 +15,6 @@ export const useFetchUiSectionComponents = (pageName,sectionId,refetch) =>{
             }
         })
 
-        console.log("Called")
 
         setLoading(false)
         

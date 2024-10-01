@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 import { Draggable } from 'react-beautiful-dnd'
 
 
-const UiSectionCard = ({ data, setRefetch, index, reorderMode }) => {
+const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) => {
 
     const [heading, setHeading] = useState("")
     const [description, setDescription] = useState("")
@@ -24,6 +24,7 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode }) => {
             descriptionError: ""
         }
     ])
+
 
 
     let { parentDocId } = useParentDocId()
@@ -67,7 +68,7 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode }) => {
 
     }
 
-    console.log(data)
+    // console.log(data)
     useEffect(() => {
         // console.log(heading.length)
         if (heading.trim() == "" || heading.length < 4) {
@@ -137,12 +138,12 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode }) => {
                         (provided) => (
                             <div className='row pe-2 shadow-sm rounded content-card' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 
-                                <div className='col-1 d-flex flex-column align-items-center justify-content-center gap-2'>
+                                <div className='col-2 d-flex flex-column align-items-center justify-content-center gap-2'>
                                     <button className='rounded-circle bg-dark text-white' data-bs-toggle="modal" data-bs-target={`#exampleModal${data._id}`} onClick={() => handleEditModal(data.heading, data.description)}><i class="bi bi-pen"></i></button>
-                                    <button className='rounded-circle bg-danger text-white' onClick={() => handleDeleteSection(data.uniqueId)}><i class="bi bi-trash"></i></button>
+                                    {!disableDelete && <button className='rounded-circle bg-danger text-white' onClick={() => handleDeleteSection(data.uniqueId)}><i class="bi bi-trash"></i></button>}
                                 </div>
 
-                                <div className='col-8 d-flex flex-column justify-content-center ps-5'>
+                                <div className='col-7 d-flex flex-column justify-content-center ps-5'>
                                     <div><strong>Heading :</strong> {data.heading}</div>
                                     <div><strong>Description :</strong> {data.description}</div>
                                 </div>
@@ -164,12 +165,12 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode }) => {
 
                 <div className='row pe-2 shadow-sm rounded content-card'>
 
-                    <div className='col-1 d-flex flex-column align-items-center justify-content-center gap-2'>
+                    <div className='col-2 d-flex flex-column align-items-center justify-content-center gap-2'>
                         <button className='rounded-circle bg-dark text-white' data-bs-toggle="modal" data-bs-target={`#exampleModal${data._id}`} onClick={() => handleEditModal(data.heading, data.description)}><i class="bi bi-pen"></i></button>
-                        <button className='rounded-circle bg-danger text-white' onClick={() => handleDeleteSection(data.uniqueId)}><i class="bi bi-trash"></i></button>
+                        {!disableDelete && <button className='rounded-circle bg-danger text-white' onClick={() => handleDeleteSection(data.uniqueId)}><i class="bi bi-trash"></i></button>}
                     </div>
 
-                    <div className='col-8 d-flex flex-column justify-content-center ps-5'>
+                    <div className='col-7 d-flex flex-column justify-content-center ps-5'>
                         <div><strong>Heading :</strong> {data.heading}</div>
                         <div><strong>Description :</strong> {data.description}</div>
                     </div>

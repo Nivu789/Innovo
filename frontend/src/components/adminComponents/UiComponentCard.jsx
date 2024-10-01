@@ -7,7 +7,7 @@ import { useFetchUiSectionComponents } from '../../hooks/adminhooks/useFetchUiSe
 
 
 
-const UiComponentCard = ({ data ,pageName,setSectionData,refetch }) => {
+const UiComponentCard = ({ data ,pageName,setSectionData,refetch,setLimit }) => {
 
 
     const [heading,setHeading] = useState("")
@@ -66,13 +66,15 @@ const UiComponentCard = ({ data ,pageName,setSectionData,refetch }) => {
     useEffect(()=>{
         console.log("UseEffect should work")
         setSectionData(sectionData)
+        setLimit(data.limit)
+        console.log(data.limit)
     },[sectionData])
 
     const handleEditModal = () =>{
-        
         setSectionData(sectionData)
         console.log(data._id)
         setParentDocId(data._id)
+        setLimit(data.limit)
         localStorage.setItem("id",data._id)
         // axios.post(`${import.meta.env.VITE_BASE_URL}/admin/get-ui-section-components`,{pageName,sectionId})
         // .then((res)=>{
