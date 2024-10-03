@@ -13,7 +13,7 @@ const SecondComponent = ({sectionId}) => {
         
         <div className='col d-flex align-items-center justify-content-center'>
             <div className='d-flex flex-column second-section-1'>
-                <div className='heading-text'>{content[0] ? content[0].heading : "Redefining the global built environment"}</div>
+                <div className='heading-text'>Redefining the global built environment</div>
                 
                 <div className='col d-flex justify-content-center align-items-center h-100 d-lg-none'>
                     <div className='shadow video-div lg-rounded-pill border d-flex align-items-center justify-content-center'>
@@ -23,9 +23,9 @@ const SecondComponent = ({sectionId}) => {
                 </div>
 
                 <div className='para'>
-                    {content[0] && content[0].description ? content[0].description : `With 35 years of experience, Innovo’s portfolio reflects a broad range of projects, 
+                    With 35 years of experience, Innovo’s portfolio reflects a broad range of projects, 
                 including high-rise towers, residential developments, villa communities, educational 
-                facilities, commercial hubs and essential urban infrastructure`}
+                facilities, commercial hubs and essential urban infrastructure
                 
                 </div>
 
