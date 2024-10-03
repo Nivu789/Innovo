@@ -8,11 +8,11 @@ export const adminMenuItems = [
                 icon:"bi bi-house-fill",
                 url:"/admin/dashboard/edit-ui/home"
             },
-            {
-                heading:"Contact Page",
-                icon:"bi bi-person-lines-fill",
-                url:"#"
-            }
+            // {
+            //     heading:"Contact Page",
+            //     icon:"bi bi-person-lines-fill",
+            //     url:"#"
+            // }
         ]
     },
     {

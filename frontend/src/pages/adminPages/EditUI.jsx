@@ -121,11 +121,11 @@ const EditUI = () => {
 
     return (
         <>
-            <div className='ps-3 w-100 pe-3' style={{ height: "100vh" }}>
+            <div className='w-100' style={{ height: "100vh",padding:"30px" }}>
 
                 <div className='row' style={{ height: "93%" }}>
 
-                    <div className='col h-100 pe-4 ps-4 d-flex flex-column gap-3 pt-2' style={{ borderRight: "2px solid black" }}>
+                    <div className='col h-100 pe-4 ps-4 d-flex flex-column gap-3 pt-2' style={{ borderRight: "" }}>
                         <div className='fs-2'>EditUI</div>
                         {
                             loading ?

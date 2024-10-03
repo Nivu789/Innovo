@@ -120,7 +120,8 @@ const UiComponentCard = ({ data ,pageName,setSectionData,refetch,setLimit }) => 
             {/* <Toaster/> */}
             <div className='row pe-2 shadow-sm rounded content-card' onClick={()=>handleEditModal()}>
 
-                <div className='col d-flex flex-column justify-content-center' style={{padding:"38px 0px 38px 60px"}}>
+                <div className='col d-flex justify-content-start gap-3' style={{padding:"38px 0px 38px 30px"}}>
+                    <div><button className='rounded-circle bg-dark text-white'>0{data.sectionId}</button></div>
                     <div><strong>Section :</strong> Section {data.sectionId}</div>
                 </div>
 

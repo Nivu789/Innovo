@@ -65,7 +65,7 @@ const ForthComponent = () => {
         <div className='row pill-section gap-4'>
             <div className='col-lg-8 col-12'>
                 <div className='pill'>
-                    <img src={`http://localhost:3000/${content && content.length > 0 && content[dataIndex] && content[dataIndex].image}`} alt="" />
+                    <img src={`${import.meta.env.VITE_BASE_URL}/${content && content.length > 0 && content[dataIndex] && content[dataIndex].image}`} alt="" />
                 </div>
             </div>
             <div className='col d-flex align-items-center'>

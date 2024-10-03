@@ -26,7 +26,7 @@ const IndiNews = () => {
             
             <div className='col-9 d-flex flex-column gap-4' style={{paddingRight:"60px"}}>
                 <div className='news-indi-image-div'>
-                    <img src={`http://localhost:3000/${newsData.image}`} alt="" />
+                    <img src={`${import.meta.env.VITE_BASE_URL}/${newsData.image}`} alt="" />
                 </div>
 
                 <div className='d-flex justify-content-between link-date-section'>

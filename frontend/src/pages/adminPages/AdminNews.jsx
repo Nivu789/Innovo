@@ -47,7 +47,7 @@ const AdminNews = () => {
   }
 
   return (
-    <div className='ps-3 w-100 pe-4' style={{ height: "90vh" }}>
+    <div className='w-100' style={{ height: "90vh",padding:"30px" }}>
 
       <Toaster />
 

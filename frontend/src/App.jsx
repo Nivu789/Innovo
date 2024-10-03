@@ -38,11 +38,11 @@ function App() {
 
 
         <Route path='/admin/dashboard' element={<Protector><AdminDashboard/></Protector>}>
-            <Route path='contacts' element={<AdminContacts/>}></Route>
-            <Route path='news' element={<AdminNews/>}></Route>
-            <Route path='addnews' element={<AddNews/>}></Route>
-            <Route path='editnews/:newsId' element={<EditNews/>}></Route>
-            <Route path='edit-ui/:pageName' element={<EditUI/>}></Route>
+            <Route path='contacts' element={<Protector><AdminContacts/></Protector>}></Route>
+            <Route path='news' element={<Protector><AdminNews/></Protector>}></Route>
+            <Route path='addnews' element={<Protector><AddNews/></Protector>}></Route>
+            <Route path='editnews/:newsId' element={<Protector><EditNews/></Protector>}></Route>
+            <Route path='edit-ui/:pageName' element={<Protector><EditUI/></Protector>}></Route>
             {/* <Route path='edit-ui/:pageName/:sectionId' element={<EditUiSection/>}></Route> */}
         </Route>
       

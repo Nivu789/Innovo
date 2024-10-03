@@ -13,7 +13,7 @@ const EditUiSection = ({ sectionData, setRefetch ,reorderMode}) => {
           <Droppable droppableId='sectionlist'>
           {
             (provided) => (
-              <div className='d-flex flex-column' {...provided.droppableProps} ref={provided.innerRef}>
+              <div className='d-flex flex-column gap-5 pt-3' {...provided.droppableProps} ref={provided.innerRef}>
                 {sectionData.map((item, index) => (
                   <UiSectionCard data={item} index={index} key={index} setRefetch={setRefetch} reorderMode={reorderMode} disableDelete={sectionData.length==1}/>
                 ))}

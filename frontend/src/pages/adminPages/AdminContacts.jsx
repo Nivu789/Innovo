@@ -19,7 +19,7 @@ const AdminContacts = () => {
       };
     
     return (
-        <div className='ps-4 w-100 pe-4 pt-3'>
+        <div className='w-100 ' style={{padding:"30px"}}>
             <div className='fs-2 d-flex justify-content-between align-items-center'>
                 <div>Contacts</div>
                 <div><button onClick={exportToExcel} className='btn btn-primary d-flex gap-2'><i class="bi bi-file-earmark-spreadsheet"></i>Export to excel</button></div>

@@ -11,7 +11,7 @@ const UserNewsCard = ({data}) => {
                     <span>{moment(data.date).format("DD-MM-yy")}</span>
                 </div>
                 <div className='card-image'>
-                    <img src={`http://localhost:3000/${data.image}`} alt="" />
+                    <img src={`${import.meta.env.VITE_BASE_URL}/${data.image}`} alt="" />
                 </div>
                 <div className='card-heading' style={{height:"100px"}}>
                     <p>{data.heading}</p>

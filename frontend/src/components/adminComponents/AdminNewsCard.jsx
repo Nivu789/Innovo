@@ -33,7 +33,7 @@ const AdminNewsCard = ({ data, handleDeleteNews, index, shuffleMode }) => {
 
                                     :
 
-                                    <img src={`http://localhost:3000/${data.image}`} alt="" onMouseEnter={() => setDivActive(true)} />
+                                    <img src={`${import.meta.env.VITE_BASE_URL}/${data.image}`} alt="" onMouseEnter={() => setDivActive(true)} />
 
                                 }
                             </div>
@@ -68,7 +68,7 @@ const AdminNewsCard = ({ data, handleDeleteNews, index, shuffleMode }) => {
 
                         :
 
-                        <img src={`http://localhost:3000/${data.image}`} alt="" onMouseEnter={() => setDivActive(true)} />
+                        <img src={`${import.meta.env.VITE_BASE_URL}/${data.image}`} alt="" onMouseEnter={() => setDivActive(true)} />
 
                     }
                 </div>

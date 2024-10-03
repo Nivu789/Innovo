@@ -6,6 +6,7 @@ const Protector = ({children}) => {
     const [authenticated,setAuthenticated] = useState(null)
 
     useEffect(()=>{
+        console.log("auth check")
         const checkAuth = () =>{
             axios.get(`${import.meta.env.VITE_BASE_URL}/admin/auth`,{
                 headers:{

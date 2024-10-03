@@ -138,18 +138,18 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) 
                         (provided) => (
                             <div className='row pe-2 shadow-sm rounded content-card' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
 
-                                <div className='col-2 d-flex flex-column align-items-center justify-content-center gap-2'>
+                                <div className='col-3 d-flex flex-column align-items-center justify-content-center gap-2'>
                                     <button className='rounded-circle bg-dark text-white' data-bs-toggle="modal" data-bs-target={`#exampleModal${data._id}`} onClick={() => handleEditModal(data.heading, data.description)}><i class="bi bi-pen"></i></button>
                                     {!disableDelete && <button className='rounded-circle bg-danger text-white' onClick={() => handleDeleteSection(data.uniqueId)}><i class="bi bi-trash"></i></button>}
                                 </div>
 
-                                <div className='col-7 d-flex flex-column justify-content-center ps-5'>
+                                <div className='col-6 d-flex flex-column justify-content-center'>
                                     <div><strong>Heading :</strong> {data.heading}</div>
                                     <div><strong>Description :</strong> {data.description}</div>
                                 </div>
 
                                 <div className='col-3 pt-2 pb-2' style={{ height: "100px" }}>
-                                    <img src={`http://localhost:3000/${data.image}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                                    <img src={`${import.meta.env.VITE_BASE_URL}/${data.image}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
                                 </div>
 
                             </div>
@@ -165,18 +165,29 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) 
 
                 <div className='row pe-2 shadow-sm rounded content-card'>
 
-                    <div className='col-2 d-flex flex-column align-items-center justify-content-center gap-2'>
+                    <div className='d-flex col-9 align-items-center gap-3' style={{paddingLeft:"30px"}}>
+                        <div className='d-flex flex-column gap-2'>
+                            <button className='rounded-circle bg-dark text-white' data-bs-toggle="modal" data-bs-target={`#exampleModal${data._id}`} onClick={() => handleEditModal(data.heading, data.description)}><i class="bi bi-pen"></i></button>
+                            {!disableDelete && <button className='rounded-circle bg-danger text-white' onClick={() => handleDeleteSection(data.uniqueId)}><i class="bi bi-trash"></i></button>}
+                        </div>
+                        <div>
+                            <div><strong>Heading :</strong> {data.heading}</div>
+                            <div><strong>Description :</strong> {data.description}</div>
+                        </div>
+
+                    </div>
+                    {/* <div className='col-2 d-flex flex-column  align-items-center justify-content-center gap-2'>
                         <button className='rounded-circle bg-dark text-white' data-bs-toggle="modal" data-bs-target={`#exampleModal${data._id}`} onClick={() => handleEditModal(data.heading, data.description)}><i class="bi bi-pen"></i></button>
                         {!disableDelete && <button className='rounded-circle bg-danger text-white' onClick={() => handleDeleteSection(data.uniqueId)}><i class="bi bi-trash"></i></button>}
                     </div>
 
-                    <div className='col-7 d-flex flex-column justify-content-center ps-5'>
+                    <div className='col-7 d-flex flex-column justify-content-center'>
                         <div><strong>Heading :</strong> {data.heading}</div>
                         <div><strong>Description :</strong> {data.description}</div>
-                    </div>
+                    </div> */}
 
                     <div className='col-3 pt-2 pb-2' style={{ height: "100px" }}>
-                        <img src={`http://localhost:3000/${data.image}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                        <img src={`${import.meta.env.VITE_BASE_URL}/${data.image}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
                     </div>
 
                 </div>
@@ -206,7 +217,7 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) 
                                 </div>
 
                                 <div class="mb-3">
-                                    {data.image && <img src={`http://localhost:3000/${data.image.replace(/\\/g, '/')}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />}
+                                    {data.image && <img src={`${import.meta.env.VITE_BASE_URL}/${data.image.replace(/\\/g, '/')}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />}
                                     <label for="exampleInputPassword1" class="form-label">Image</label>
                                     <input type="file" name="image" onChange={(e) => setImage(e.target.files[0])} class="form-control" id="exampleInputImage" />
                                 </div>
