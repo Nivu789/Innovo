@@ -3,12 +3,12 @@ import HeroComponent from '../../components/userComponents/HeroComponent'
 import SecondComponent from '../../components/userComponents/SecondComponent'
 import ThirdComponent from '../../components/userComponents/ThirdComponent'
 import ForthComponent from '../../components/userComponents/ForthComponent'
-import Footer from '../../components/userComponents/Footer'
+
 
 const Home = () => {
   return (
     <>
-    <HeroComponent/>
+    <HeroComponent sectionId={1}/>
     <SecondComponent sectionId={2}/>
     <ThirdComponent/>
     <ForthComponent/>

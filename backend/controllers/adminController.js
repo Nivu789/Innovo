@@ -65,6 +65,7 @@ const uploadUiImage = (req, res,next) =>{
             console.log(req.file.path)
             next()
         } else {
+            console.log("no image")
             next()
         }
     } catch (error) {
@@ -74,7 +75,7 @@ const uploadUiImage = (req, res,next) =>{
 
 const editUiComponent = async(req,res) =>{
     try {
-       const {heading,description,parentId,uniqueId} = req.body
+       const {heading,description,parentId,uniqueId,video} = req.body
        console.log(heading)
        console.log("ObjectId",parentId)
        console.log("UniqueId",uniqueId)
@@ -82,14 +83,17 @@ const editUiComponent = async(req,res) =>{
        const parentDocument = await UI.findById({_id:parsedParentId});
 
        const itemToUpdate = parentDocument.items.find((item)=>item.uniqueId==uniqueId)
-
+        console.log(video)
        if(req.file){
+            console.log(video)
             itemToUpdate.heading = heading
             itemToUpdate.description = description
             itemToUpdate.image = req.file.path
        }else{
+        console.log(video)
             itemToUpdate.heading = heading
             itemToUpdate.description = description
+            itemToUpdate.image = video
        }
 
        const updateUi = await parentDocument.save()

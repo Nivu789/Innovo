@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './herocontent.css'
 
-const HeroContent = () => {
+const HeroContent = ({content}) => {
     const promoText = ["We develop and deploy smart technologies","We nurture our people","We create social value","We deliver critical infrastructure projects","We foster sustainability","We cultivate strong and meaningful partnerships"]
     const [textIndex,setTextIndex] = useState(0)
     const [text,setText] = useState(promoText[0])
@@ -21,17 +21,18 @@ const HeroContent = () => {
         <>
             <div className='hero-content row'>
                 <div className='grid-1 col-xs-1'>
-                    <h1><span className='me-lg-4 me-sm-3'>Innovating</span>for a
-                        better built tomorrow</h1>
-                    <h3 className='mt-3'>Innovo Group is a leader in urban development, specialising in the design,
-                        engineering and construction of city projects across four continents.</h3>
+                    {content[0] && content[0].heading ? <h1><span className='me-lg-4 me-sm-3'>{content[0].heading}</span>
+                    </h1> : <h1><span className='me-lg-4 me-sm-3'>Innovating</span>for a
+                        better built tomorrow</h1>}
+                    
+                    <h3 className='mt-3'>{content[0] && content[0].description}</h3>
                 </div>
                 <div className='grid-2'>
                     
                 </div>
             </div>
 
-            <div className='d-flex justify-content-between pe-lg-5 hero-content-2'>
+            <div className='d-flex justify-content-between pe-lg-0 hero-content-2 pb-3'>
 
                 <div className='grid-1 fs-lg-2 fs-sm-3'>
                     {text} 
@@ -47,11 +48,11 @@ const HeroContent = () => {
                     </div>
                     </a>
                     </div>
-                    <div className='d-flex gap-4'>
+                    {/* <div className='d-flex gap-4'>
                         <div className='d-flex align-items-center'>
                             <img src="/logo.svg" alt="" className='section-2-logo'/>
                         </div>
-                    </div>
+                    </div> */}
 
                 </div>
 

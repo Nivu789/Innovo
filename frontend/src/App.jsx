@@ -19,6 +19,7 @@ import IndiNews from './pages/userPages/IndiNews'
 
 
 
+
 function App() {
   
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path='addnews' element={<Protector><AddNews/></Protector>}></Route>
             <Route path='editnews/:newsId' element={<Protector><EditNews/></Protector>}></Route>
             <Route path='edit-ui/:pageName' element={<Protector><EditUI/></Protector>}></Route>
+            {/* <Route path='banner' element={<Protector><EditVideoBanner/></Protector>}></Route> */}
             {/* <Route path='edit-ui/:pageName/:sectionId' element={<EditUiSection/>}></Route> */}
         </Route>
       

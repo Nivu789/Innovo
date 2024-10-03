@@ -14,6 +14,7 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) 
     const [image, setImage] = useState("")
     const [headingError, setHeadingError] = useState(false)
     const [descriptionError, setDescriptionError] = useState(false)
+    const [video,setVideo] = useState('')
 
 
     const [erros, setErrors] = useState([
@@ -33,6 +34,7 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) 
     formData.append('heading', heading)
     formData.append('description', description)
     formData.append('image', image)
+    formData.append('video',video)
 
     const handleUiChange = (uniqueId, modalId) => {
         if (heading == "" || description == "" || headingError || descriptionError) {
@@ -79,6 +81,7 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) 
             setErrors({ ...erros, headingError: null })
         }
 
+
     }, [heading])
 
     useEffect(() => {
@@ -91,9 +94,10 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) 
         }
     }, [description])
 
-    const handleEditModal = (dataHeading, dataDescription) => {
+    const handleEditModal = (dataHeading, dataDescription,dataImage) => {
         setHeading(dataHeading);
         setDescription(dataDescription);
+        setVideo(dataImage)
     }
 
     const handleDeleteSection = (uniqueId) => {
@@ -167,7 +171,7 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) 
 
                     <div className='d-flex col-9 align-items-center gap-3' style={{paddingLeft:"30px"}}>
                         <div className='d-flex flex-column gap-2'>
-                            <button className='rounded-circle bg-dark text-white' data-bs-toggle="modal" data-bs-target={`#exampleModal${data._id}`} onClick={() => handleEditModal(data.heading, data.description)}><i class="bi bi-pen"></i></button>
+                            <button className='rounded-circle bg-dark text-white' data-bs-toggle="modal" data-bs-target={`#exampleModal${data._id}`} onClick={() => handleEditModal(data.heading, data.description,data.image)}><i class="bi bi-pen"></i></button>
                             {!disableDelete && <button className='rounded-circle bg-danger text-white' onClick={() => handleDeleteSection(data.uniqueId)}><i class="bi bi-trash"></i></button>}
                         </div>
                         <div>
@@ -187,7 +191,7 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) 
                     </div> */}
 
                     <div className='col-3 pt-2 pb-2' style={{ height: "100px" }}>
-                        <img src={`${import.meta.env.VITE_BASE_URL}/${data.image}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                        {data.image.startsWith('uploads') && <img src={`${import.meta.env.VITE_BASE_URL}/${data.image}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />}
                     </div>
 
                 </div>
@@ -217,9 +221,11 @@ const UiSectionCard = ({ data, setRefetch, index, reorderMode, disableDelete }) 
                                 </div>
 
                                 <div class="mb-3">
-                                    {data.image && <img src={`${import.meta.env.VITE_BASE_URL}/${data.image.replace(/\\/g, '/')}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />}
-                                    <label for="exampleInputPassword1" class="form-label">Image</label>
-                                    <input type="file" name="image" onChange={(e) => setImage(e.target.files[0])} class="form-control" id="exampleInputImage" />
+                                    {data.image && data.image.startsWith('uploads') &&<img src={`${import.meta.env.VITE_BASE_URL}/${data.image.replace(/\\/g, '/')}`} alt="" style={{ objectFit: "cover", width: "100%", height: "100%" }} />}
+                                    <label for="exampleInputPassword1" class="form-label">{data.image.startsWith('uploads') ? "Image" : "Video Link"}</label>
+                                    {data.image.startsWith('uploads') ? <input type="file" name="image" onChange={(e) => setImage(e.target.files[0])} class="form-control" id="exampleInputImage" />
+                                    : <input type="text" name="video" value={video} onChange={(e) => setVideo(e.target.value)} class="form-control" id="exampleInputImage" />      
+                                }
                                 </div>
 
                             </form>
