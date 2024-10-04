@@ -2,12 +2,13 @@ import React from 'react'
 import './navbar.css'
 import { menuItems } from '../Menu/menuItems'
 import NavbarItem from './NavbarItem'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   const depthLevel = 0
   return (
     <div className={`navbar-div`}>
-      <div className='ps-4'><img src="/logo.svg" alt="" /></div>
+      <Link to={'/'}><div className='ps-4'><img src="/logo.svg" alt="" /></div></Link>
         <ul className='navbar-ul p-3'>
           {menuItems.map((item)=>(
             <NavbarItem item={item} depthLevel={depthLevel}/>

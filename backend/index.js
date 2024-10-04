@@ -9,7 +9,8 @@ const cookieParser = require('cookie-parser')
 const dbConnect = require('./db/dbConnect')
 
 app.use(cors({
-    credentials: true
+    credentials: true,
+    origin:"*"
 }))
 
 app.use(express.json())
